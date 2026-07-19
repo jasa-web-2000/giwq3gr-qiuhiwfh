@@ -47,10 +47,10 @@ async function loadChartData() {
         const colors = [
             '#ff6467',
             '#00d492',
-            '#e67f0a',
             '#ed6aff',
             '#7c86ff',
             '#a6a807',
+            '#e67f0a',
             '#30b6c0',
         ];
 
@@ -176,7 +176,8 @@ async function loadChartData() {
             searchFields: ["Nama", "Deskripsi"],
             highlightOnHover: "parents",
             mouseScroll: OrgChart.action.zoom,
-            layout: OrgChart.layout.normal,
+            layout: OrgChart.layout.mixed,
+            layoutGridColumns: 1,
             enableSearch: true,
             scaleInitial: 0.6,
             template: "myTemplate",
