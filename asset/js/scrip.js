@@ -164,7 +164,7 @@ async function loadChartData() {
 
         chart = new OrgChart(document.getElementById("tree"), {
             lazyLoading: true,
-            orientation: OrgChart.orientation.right,
+            orientation: OrgChart.orientation.left,
             editForm: {
                 titleBinding: "Nama",
                 buttons: {
