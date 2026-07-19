@@ -42,28 +42,39 @@ async function loadChartData() {
             return item;
         });
 
+        const urlNodeId = new URLSearchParams(window.location.search).get('nodeId');
+
         const colors = [
             '#ff6467',
-            '#ff8904',
-            '#ffb900',
             '#00d492',
+            '#e67f0a',
             '#ed6aff',
             '#7c86ff',
-            '#364153',
+            '#a6a807',
+            '#30b6c0',
         ];
-        const urlNodeId = new URLSearchParams(window.location.search).get('nodeId');
+
+        const strokes = [
+            "",
+            "10,40,4",
+            "10,10",
+            "20,25",
+            "100",
+        ];
 
         OrgChart.templates.ana.node = function (node, data, template, config) {
 
-            const finalColor = (data.Generasi % colors.length) - 1
+            const finalColor = (data.Generasi - 1) % colors.length;
+
             return `<rect 
+            stroke-dasharray="${strokes[data.pid % 5]}"
              x="0" 
              y="0" 
              width="300" 
              height="80"
              fill="${colors[finalColor]}"
-             stroke="#aeaeae"
-             stroke-width="1"
+             stroke="#000"
+             stroke-width="3"
              rx="40"
              ry="40">
          </rect>`;
@@ -152,6 +163,8 @@ async function loadChartData() {
         OrgChart.SEARCH_PLACEHOLDER = "Car nama / deskripsi";
 
         chart = new OrgChart(document.getElementById("tree"), {
+            lazyLoading: true,
+            orientation: OrgChart.orientation.right,
             editForm: {
                 titleBinding: "Nama",
                 buttons: {
@@ -163,9 +176,9 @@ async function loadChartData() {
             searchFields: ["Nama", "Deskripsi"],
             highlightOnHover: "parents",
             mouseScroll: OrgChart.action.zoom,
-            // layout: OrgChart.layout.grid,
+            layout: OrgChart.layout.normal,
             enableSearch: true,
-            scaleInitial: 0.5,
+            scaleInitial: 0.6,
             template: "myTemplate",
             // miniMap: true,
             buttons: {
@@ -235,7 +248,9 @@ async function loadChartData() {
         });
 
     } catch (error) {
-        document.getElementById("tree").innerHTML = "<h1>Gagal Mendapatkan Data!</h1>"
+
+
+        document.getElementById("tree").innerHTML = '<div style="padding: 20px;">Gagal Mendapatkan Data!</div>'
         console.error("Gagal mengambil data dari Google Sheets:", error);
     }
 }
