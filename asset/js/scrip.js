@@ -100,7 +100,7 @@ async function loadChartData() {
         OrgChart.templates.myTemplate.link = `
             <path stroke-linejoin="round" 
                   stroke="#000" 
-                  stroke-width="2px" 
+                  stroke-width="4px" 
                   fill="none" 
                   d="{edge}" />
         `;
