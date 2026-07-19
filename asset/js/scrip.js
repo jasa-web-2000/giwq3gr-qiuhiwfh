@@ -179,7 +179,7 @@ async function loadChartData() {
             searchFields: ["Nama", "Deskripsi"],
             highlightOnHover: "parents",
             mouseScroll: OrgChart.action.zoom,
-            layout: OrgChart.layout.mixed,
+            // layout: OrgChart.layout.mixed,
             layoutGridColumns: 1,
             enableSearch: true,
             scaleInitial: 0.6,
