@@ -14,10 +14,10 @@ async function loadChartData() {
         dataWithoutFirst.forEach(function (row) {
             let id = row[0];
             itemsMap[id] = {
-                id: id,
+                id: parseInt(id, 10),
                 Nama: row[1],
                 Deskripsi: row[2] || "-",
-                pid: (row[3] === '-' || !row[3]) ? null : row[3],
+                pid: (row[3] === '-' || !row[3]) ? null : parseInt(row[3], 10),
                 Generasi: 1
             };
         });
@@ -41,6 +41,9 @@ async function loadChartData() {
             item.Generasi = getGenerasi(id);
             return item;
         });
+
+        console.log(itemsMap);
+
 
         const urlNodeId = new URLSearchParams(window.location.search).get('nodeId');
 
@@ -160,7 +163,7 @@ async function loadChartData() {
             `;
         };
 
-        OrgChart.SEARCH_PLACEHOLDER = "Car nama / deskripsi";
+        OrgChart.SEARCH_PLACEHOLDER = "Cari nama / deskripsi";
 
         chart = new OrgChart(document.getElementById("tree"), {
             lazyLoading: true,
